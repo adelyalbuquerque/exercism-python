@@ -26,13 +26,13 @@ class Clock:
         elif self.minutos < 0:
             self.manejar_minutos_negativos()
 
-
     def manejar_horas_negativas(self):
         if self.horas < -24:
             self.horas = self.horas * -1
             self.horas = self.horas % 24
             self.horas = self.horas * -1
-        self.horas = 24 + self.horas
+        if self.horas != 0:
+            self.horas = 24 + self.horas
 
     def formatar_horas(self):
         if self.horas >= 24:
@@ -40,6 +40,13 @@ class Clock:
         elif self.horas < 0:
             self.manejar_horas_negativas()
 
+    def add(self, minutos_adicionados):
+        self.minutos = self.minutos + minutos_adicionados
+        self.formatar_minutos()
+        self.formatar_horas()
+        return self
+
+# str(Clock(10,0).add(3)) 1003
 # str(Clock(8,0)) --- 8:00
 # str(Clock(1, 160)) -- 3:40
 # str(Clock(24,0)) -- 00:00
