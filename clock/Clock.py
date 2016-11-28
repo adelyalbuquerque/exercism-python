@@ -10,6 +10,9 @@ class Clock:
         self.minutos = str(self.minutos)
         return '{}:{}'.format(self.horas.zfill(2),self.minutos.zfill(2))
 
+    def __eq__(self, other):
+        return self.horas == other.horas and self.minutos == other.minutos
+
     def dimunir_minutos_maiores_sesenta(self):
         self.horas = (self.minutos / 60) + self.horas
         self.minutos = self.minutos % 60
